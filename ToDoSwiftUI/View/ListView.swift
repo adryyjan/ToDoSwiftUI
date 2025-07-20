@@ -9,28 +9,35 @@ import SwiftUI
 import Observation
 
 struct ListView: View {
-    @Bindable var viewModel = ListVM()
+    @Environment(ListVM.self) var viewModel
     
     var body: some View {
-        List {
-            ForEach(viewModel.items) { item in
-                ListRowView(item: item)
-                    .onTapGesture {
-                        withAnimation(.easeOut .speed(3.0)) {
-                            viewModel.updateItem(item: item)
-                        }
+        ZStack {
+            if viewModel.items.isEmpty {
+                EmptyListView()
+                    .transition(AnyTransition.opacity.animation(.easeIn))
+            }else{
+                List {
+                    ForEach(viewModel.items) { item in
+                        ListRowView(item: item)
+                            .onTapGesture {
+                                withAnimation(.easeOut .speed(3.0)) {
+                                    viewModel.updateItem(item: item)
+                                }
+                            }
+                        
+                    }
+                    .onDelete { index in
+                        viewModel.deleteItems(at: index)
+                    }
+                    .onMove { IndexSet, Int in
+                        viewModel.move(from: IndexSet, to: Int)
                     }
                     
+                    
+                    
+                }
             }
-            .onDelete { index in
-                viewModel.deleteItems(at: index)
-            }
-            .onMove { IndexSet, Int in
-                viewModel.move(from: IndexSet, to: Int)
-            }
-            
-            
-            
         }
         .navigationTitle(Text("ToDo list 📝"))
         .navigationBarTitleDisplayMode(.inline)
@@ -41,18 +48,14 @@ struct ListView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink("Add") {
-                    AddView(viewModel: viewModel)
+                    AddView()
                 }}
         }
+        
     }
-    
+        
 
 }
 
-#Preview {
-    NavigationView {
-        ListView()
-    }
-}
 
 

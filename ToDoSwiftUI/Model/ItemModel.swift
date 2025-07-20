@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct ItemModel: Identifiable{
-    let id : UUID
-    let title: String
-    let isCompleted: Bool
+struct ItemModel: Identifiable, Codable{
+    var id : UUID
+    var title: String
+    var isCompleted: Bool
     
     init(id: UUID = UUID(), title: String, isCompleted: Bool) {
         self.id = id

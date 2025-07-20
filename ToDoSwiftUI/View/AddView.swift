@@ -10,7 +10,7 @@ import Observation
 
 struct AddView: View {
     @State private var newTask: String = ""
-    @Bindable var viewModel: ListVM
+    @Environment(ListVM.self) var viewModel
     @Environment(\.presentationMode) var presentationMode
     
     @State var allertTitle: String = ""

@@ -5,22 +5,31 @@
 //  Created by Adrian Mazek on 19/07/2025.
 //
 
-import Foundation
+import SwiftUI
 import Observation
 
 @Observable
-final class ListVM {
-    var items: [ItemModel] = []
+class ListVM {
+    var items: [ItemModel] = []{
+        didSet{
+            saveItems()
+        }
+    }
+    let itemsKey: String = "items_list"
+    
+    init(){
+        getItems()
+    }
+    
     
     func getItems(){
-        let newItems = [
-            ItemModel(title: "test", isCompleted: true),
-            ItemModel(title: "test", isCompleted: true),
-            ItemModel(title: "test", isCompleted: false),
-            ItemModel(title: "test", isCompleted: false),
-            ItemModel(title: "test", isCompleted: true)
-        ]
-        self.items = newItems
+        guard
+            let data = UserDefaults.standard.data(forKey: itemsKey),
+            let decodedItems = try? JSONDecoder().decode([ItemModel].self, from: data)
+        else { return }
+
+            self.items = decodedItems
+        
     }
     
     func deleteItems(at offsets: IndexSet) {
@@ -42,5 +51,11 @@ final class ListVM {
             items[index] = item.updateCompletin()
         }
             
+    }
+    
+    func saveItems() {
+        if let encodedData = try? JSONEncoder().encode(items) {
+            UserDefaults.standard.set(encodedData, forKey: itemsKey)
+        }
     }
 }
