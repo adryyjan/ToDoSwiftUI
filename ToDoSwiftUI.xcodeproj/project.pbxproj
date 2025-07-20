@@ -10,22 +10,9 @@
 		3AC68A292E2C13B10020D702 /* ToDoSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		3AC68AA22E2D2B010020D702 /* Exceptions for "ToDoSwiftUI" folder in "ToDoSwiftUI" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 3AC68A282E2C13B10020D702 /* ToDoSwiftUI */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		3AC68A2B2E2C13B10020D702 /* ToDoSwiftUI */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				3AC68AA22E2D2B010020D702 /* Exceptions for "ToDoSwiftUI" folder in "ToDoSwiftUI" target */,
-			);
 			path = ToDoSwiftUI;
 			sourceTree = "<group>";
 		};
