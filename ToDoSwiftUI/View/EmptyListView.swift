@@ -45,6 +45,7 @@ struct EmptyListView: View {
             .onAppear(perform: addAnimation)
         
 //        .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .frame(maxWidth: 400)
     }
     
     func addAnimation() {

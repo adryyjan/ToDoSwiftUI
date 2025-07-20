@@ -42,8 +42,6 @@ class ListVM {
     
     func addItem(title: String) {
         items.append(ItemModel(title: title, isCompleted: false))
-        print("dodano")
-        print(items)
     }
     
     func updateItem(item: ItemModel){
